@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template
 import requests
 import json
@@ -16,11 +15,11 @@ db = client.marketdata
 
 # List of dictionaries
 index_price = db.index_price.find()
-data = pd.DataFrame(list(index_price))
+data = list(db.index_price.find())
  
 
     
-dict_data = data.to_dict
+# dict_data = data.to_dict
 # dict_data
 
 # create route that renders index.html template
@@ -33,7 +32,7 @@ def index():
 @app.route("/project")
 def project():
 
-    return render_template("project.html", dict=dict_data)
+    return render_template("project.html", dict_data=data)
 
 
 
